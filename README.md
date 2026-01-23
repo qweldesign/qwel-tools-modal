@@ -1,8 +1,15 @@
-# QWEL CREATIVE TEMPLATE
+# QWEL Modal Gallery
 
-[QWEL.DESIGN](https://qwel.design/) の作品集 Creative Tools のためのテンプレート
+- モーダルウィンドウとして機能するギャラリー
+- **使い方**:  
+  _modal.scss をバンドルした css を読み込み,  
+  ギャラリー本体に [data-gallery="modal"] 属性を付与し,  
+  ギャラリーアイテムに [data-gallery-item] 属性を付与する  
+  ギャラリーアイテムは img の親要素: li, figure などを指定すること
+- **オプション**  
+  breakpoint: 指定のBP未満のビューポートでは発火しない
 
-[https://tools.qwel.design/](https://tools.qwel.design/)
+▶ Sample DEMO: [https://tools.qwel.design/modal/]
 
 ---
 
