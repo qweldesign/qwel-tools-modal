@@ -10,9 +10,8 @@
  * 
  * 使い方:
  * _modal.scss をバンドルした css を読み込み,
- * ギャラリー本体に [data-gallery="modal"] 属性を付与し,
- * ギャラリーアイテムに [data-gallery-item] 属性を付与する
- * ギャラリーアイテムは img の親要素: li, figure などを指定すること 
+ * ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し,
+ * 画像を開くリンクには [data-gallery-src="[imagepath]"] 属性を付与する 
  * 
  * オプション:
  * breakpoint: 指定のBP未満のビューポートでは発火しない
@@ -27,8 +26,8 @@ export default class Modal {
     // 要素
     this.elem = elem || document.querySelector('[data-gallery="modal"]');
     if (!this.elem) return;
-    this.items = Array.from(this.elem.querySelectorAll('[data-gallery-item]'));
-    if (!this.items.length) return;
+    this.links = Array.from(this.elem.querySelectorAll('[data-gallery-src]'));
+    if (!this.links.length) return;
 
     // 状態管理
     this.index = 0;
@@ -97,24 +96,31 @@ export default class Modal {
   }
 
   handleEvents() {
-    this.items.forEach((item, i) => {
-      item.addEventListener('click', () => {
-        this.show(i);
+    // 開く
+    this.links.forEach((item, i) => {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        this.change(i);
       });
     });
 
+    // 閉じる
     this.overlay.addEventListener('click', () => this.hide());
     this.close.addEventListener('click', () => this.hide());
-    this.prev.addEventListener('click', () => this.show(this.index - 1));
-    this.next.addEventListener('click', () => this.show(this.index + 1));
+
+    // 移動
+    this.prev.addEventListener('click', () => this.change(this.index - 1));
+    this.next.addEventListener('click', () => this.change(this.index + 1));
   }
 
-  show(i) {
-    this.index = (i + this.items.length) % this.items.length;
-    const item = this.items[this.index];
-    const img = item.querySelector('img');
-    const src = img.getAttribute('src');
+  change(index) {
+    this.index = (index + this.links.length) % this.links.length;
+    const item = this.links[this.index];
+    const src = item.dataset.gallerySrc;
+    this.show(src);
+  }
 
+  show(src) {
     // モーダルを開く
     this.modal.classList.remove('is-hidden');
     this.modal.setAttribute('aria-hidden', 'false');

@@ -3,9 +3,8 @@
 - モーダルウィンドウとして機能するギャラリー
 - **使い方**:  
   _modal.scss をバンドルした css を読み込み,  
-  ギャラリー本体に [data-gallery="modal"] 属性を付与し,  
-  ギャラリーアイテムに [data-gallery-item] 属性を付与する  
-  ギャラリーアイテムは img の親要素: li, figure などを指定すること
+  ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し,  
+  画像を開くリンクには [data-gallery-src="[imagepath]"] 属性を付与する
 - **オプション**  
   breakpoint: 指定のBP未満のビューポートでは発火しない
 

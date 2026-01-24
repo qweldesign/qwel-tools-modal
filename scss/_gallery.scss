@@ -11,7 +11,7 @@
   &__item {
     @include col(3, false, "sm");
 
-    & > img {
+    & img {
       aspect-ratio: 8 / 5;
       object-fit: cover;
       margin: auto;
