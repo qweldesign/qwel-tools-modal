@@ -1,15 +1,15 @@
 # QWEL Modal Gallery
 
 - モーダルウィンドウとして機能するギャラリー
-- ハッシュ(#)による履歴保持対応
+- ハッシュ(#)による履歴保持対応 (オプション)
 - **使い方**:  
   _modal.scss をバンドルした css を読み込み,  
   ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し,  
-  画像を開くリンクには [data-gallery-src="[imagepath]"] 属性を付与する
+  画像を開くリンクには href 属性と [data-gallery-src="[imagepath]"] 属性を付与する
 - **オプション**  
   breakpoint: 指定のBP未満のビューポートでは発火しない
 
-▶ Sample DEMO: [https://tools.qwel.design/modal/]
+▶ Sample DEMO: [https://qwel.design/tools/modal/]
 
 ---
 

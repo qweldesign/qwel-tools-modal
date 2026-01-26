@@ -12,7 +12,7 @@
  * 使い方:
  * _modal.scss をバンドルした css を読み込み,
  * ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し,
- * 画像を開くリンクには [data-gallery-src="[imagepath]"] 属性を付与する 
+ * 画像を開くリンクには href 属性と [data-gallery-src="[imagepath]"] 属性を付与する 
  * 
  * オプション:
  * breakpoint: 指定のBP未満のビューポートでは発火しない
@@ -83,7 +83,7 @@ export default class Modal {
     this.close = document.createElement('div');
     this.close.classList.add('modal__close');
     const closeIcon = document.createElement('div');
-    closeIcon.classList.add('icon', 'icon--close', 'icon--lg');
+    closeIcon.classList.add('icon', 'is-close', 'is-lg');
     const closeSpan = document.createElement('span');
     closeSpan.classList.add('icon__span');
     closeIcon.appendChild(closeSpan);
@@ -94,7 +94,7 @@ export default class Modal {
     this.prev = document.createElement('div');
     this.prev.classList.add('modal__prev');
     const prevIcon = document.createElement('div');
-    prevIcon.classList.add('icon', 'icon--chevron-left', 'icon--lg');
+    prevIcon.classList.add('icon', 'is-chevron-left', 'is-lg');
     const prevSpan = document.createElement('span');
     prevSpan.classList.add('icon__span');
     prevIcon.appendChild(prevSpan);
@@ -105,7 +105,7 @@ export default class Modal {
     this.next = document.createElement('div');
     this.next.classList.add('modal__next');
     const nextIcon = document.createElement('div');
-    nextIcon.classList.add('icon', 'icon--chevron-right', 'icon--lg');
+    nextIcon.classList.add('icon', 'is-chevron-right', 'is-lg');
     const nextSpan = document.createElement('span');
     nextSpan.classList.add('icon__span');
     nextIcon.appendChild(nextSpan);
@@ -152,7 +152,7 @@ export default class Modal {
       // モーダルを開く
       this.modal.classList.remove('is-hidden');
       this.modal.setAttribute('aria-hidden', 'false');
-      this.shown = true;
+      this.isShown = true;
     }
 
     // 画像切り替え
@@ -172,14 +172,14 @@ export default class Modal {
 
   hide(withSync) {
     if (withSync) {
-      history.pushState(null, '', location.pathname);
+      history.pushState(null, '', location.pathname + location.search);
     }
     this.transitionEnd(this.modal, () => {
       this.modal.classList.add('is-hidden');
     }).then(() => {
       this.modal.setAttribute('aria-hidden', 'true');
     });
-    this.shown = false;
+    this.isShown = false;
   }
 
   hashChangeHandler() {
@@ -187,21 +187,29 @@ export default class Modal {
     const index = this.map.findIndex(item => item.hash === hash);
     if (!hash || index === -1) {
       // hash が空 もしくは map に存在しない場合 (Modalと無関係のAnchorに移動する場合)
-      if (this.shown) this.hide(false);
+      if (this.isShown) this.hide(false);
     } else {
       this.change(index, false);
     }
   }
 
-  transitionEnd(elem, func) {
+  transitionEnd(elem, func, timeout = 1000) {
     // CSS遷移の完了を監視
+    // 遷移が発生しない場合でも timeout 後に必ず resolve する
     let callback;
+    let timer;
     const promise = new Promise((resolve) => {
-      callback = () => resolve(elem);
+      callback = (event) => {
+        // 子要素 (.modal__image 等) からバブリングしてきた transitionend は無視
+        if (event && event.target !== elem) return;
+        resolve(elem);
+      };
       elem.addEventListener('transitionend', callback);
+      timer = setTimeout(callback, timeout);
     });
     func();
-    promise.then((elem) => {
+    promise.then(() => {
+      clearTimeout(timer);
       elem.removeEventListener('transitionend', callback);
     });
     return promise;
