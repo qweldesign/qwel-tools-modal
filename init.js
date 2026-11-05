@@ -1,18 +1,5 @@
-// Action Core
-import ActionCore from './js/action-core.js';
-new ActionCore.Preset();
-
-// Fader
-import Fader from './js/fader.js';
-new Fader();
-
 // Modal
 import Modal from './js/modal.js';
-new Modal();
-
-// Slider
-import Slider from './js/slider.js';
-new Slider();
 
 /**
  * Auto Copyright
@@ -22,7 +9,7 @@ new Slider();
  */
 class AutoCopyright {
   constructor(startYear, companyName, elem) {
-    elem ||= document.querySelector('.footer__copyright');
+    elem ??= document.querySelector('.footer__copyright');
     if (elem) elem.innerHTML = this.generate(startYear, companyName);
   }
 
@@ -33,3 +20,4 @@ class AutoCopyright {
 }
 
 new AutoCopyright(2019, 'QWEL.DESIGN');
+new Modal();

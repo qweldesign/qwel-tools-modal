@@ -5,19 +5,61 @@
 @use "variables" as *;
 
 .main {
-  &__container {
-    @include container("md");
+  &__inner {
+    width: min(100%, 900px);
+    margin: 0 auto;
+    padding: space("medium") clamp(0.75rem, 2%, 1.125rem);
   }
 
-  &__row {
-    @include row(flex-start, flex-start);
+  &__title {
+    &::after {
+      content: "✶";
+      margin-inline-start: space("x-small");
+      color: theme-color("secondary");
+      font-size: 1.25em;
+    }
+
+    & > span {
+      font-family: "Cormorant Garamond", serif;
+    }
   }
 
-  &__article {
-    @include col(6, false, "md");
+  &__heading {
+    &::before {
+      content: "✶";
+      margin-inline: space("x-small");
+      color: var(--color--primary--active);
+      font-size: 1.5em;
+      vertical-align: -0.125em;
+    }
   }
 
-  &__aside {
-    @include col(3, false, "md");
+  &__list {
+    margin: space("medium") 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__listItem {
+    position: relative;
+    padding-inline-start: space("large");
+    padding-inline-end: space("medium");
+    color: theme-color("dark");
+    font-size: 0.875rem;
+    letter-spacing: var(--heading-letter-spacing);
+    text-align: justify;
+
+    &::before {
+      content: "―";
+      position: absolute;
+      top: 0;
+      left: space("small");
+      color: theme-color("secondary");
+      font-weight: 700;
+    }
+  }
+
+  &__button {
+    @include button();
   }
 }

@@ -1,15 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starter Template</title>
+    <title>Modal Gallery | QWEL in Action</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Sans:wght@100..900&family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico">
   </head>
   <body>
-    
-
-
+    <header class="header">
+      <h1 class="header__siteBrand"><a href="https://qwel.design/"><img src="./assets/logo.svg" alt="QWEL in Action"></a></h1>
+    </header>
+    <ul class="breadcrumb">
+      <li class="breadcrumb__item"><a href="https://qwel.design/">QWEL in Action</a></li>
+      <li class="breadcrumb__item"><a href="../">Creative Tools</a></li>
+      <li class="breadcrumb__item is-current"><span>Modal Gallery</span></li>
+    </ul>
+    <main class="main">
+      <div class="main__inner">
+        <h2 class="main__title">Modal Gallery | Created by <span> ― QWEL.DESIGN</span></h2>
+        <ul class="main__list">
+          <li class="main__listItem">モーダルウィンドウとして機能するギャラリー</li>
+          <li class="main__listItem">ハッシュ (#) による履歴保持対応 (オプション)</li>
+          <li class="main__listItem">使い方:
+            <br>_modal.scss をバンドルしたCSSを読み込み、
+            <br>ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し、
+            <br>画像を開くリンクには href 属性と [data-gallery-src="[imagepath]"] 属性を付与する
+          </li>
+          <li class="main__listItem">オプション:
+            <br>breakpoint: 指定のBP未満のビューポートでは発火しない
+          </li>
+          <li class="main__listItem">MITライセンスで提供しており、商用/非商用問わず自由に利用可能です</li>
+        </ul>
+        <a class="main__button" href="https://github.com/qweldesign/qwel-tools-modal" target="_blank" rel="noopener">GitHub で見る</a>
+        <div class="gallery" data-gallery="modal">
+          <ul class="gallery__inner" data-gallery-main>
+            <li class="gallery__item">
+              <a href="#img00" data-gallery-src="./assets/sampleImg00.jpg">
+                <img src="./assets/thumb_sampleImg00.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img01" data-gallery-src="./assets/sampleImg01.jpg">
+                <img src="./assets/thumb_sampleImg01.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img02" data-gallery-src="./assets/sampleImg02.jpg">
+                <img src="./assets/thumb_sampleImg02.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img03" data-gallery-src="./assets/sampleImg03.jpg">
+                <img src="./assets/thumb_sampleImg03.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img04" data-gallery-src="./assets/sampleImg04.jpg">
+                <img src="./assets/thumb_sampleImg04.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img05" data-gallery-src="./assets/sampleImg05.jpg">
+                <img src="./assets/thumb_sampleImg05.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+            <li class="gallery__item">
+              <a href="#img06" data-gallery-src="./assets/sampleImg06.jpg">
+                <img src="./assets/thumb_sampleImg06.jpg" alt="" loading="lazy">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer__inner">
+        <a class="footer__item is-github" href="https://github.com/qweldesign" target="_blank" rel="noopener">
+          <svg class="icon is-si-github is-md" width="36" height="36" aria-hidden="true">
+            <use href="./assets/icons.svg#si-github"></use>
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a class="footer__item is-contact" href="https://qwel.design/tools/contact-form/" target="_blank" rel="noopener">
+          <svg class="icon is-si-mail is-md" width="36" height="36" aria-hidden="true">
+            <use href="./assets/icons.svg#si-mail"></use>
+          </svg>
+          <span>Contact Me</span>
+        </a>
+        <small class="footer__copyright"></small>
+      </div>
+    </footer>
+    <script src="./init.js" type="module"></script>
   </body>
 </html>

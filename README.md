@@ -1,12 +1,24 @@
-## QWEL STARTER TEMPLATE
+# QWEL Modal Gallery
 
-[QWEL.DESIGN](https://qwel.design) のWeb開発のためのスターターキット
+- モーダルウィンドウとして機能するギャラリー
+- ハッシュ (#) による履歴保持対応 (オプション)
+- **使い方**:  
+  _modal.scss をバンドルしたCSSを読み込み、  
+  ギャラリー (画像リストを含むラッパー要素) に [data-gallery="modal"] 属性を付与し、  
+  画像を開くリンクには href 属性と [data-gallery-src="[imagepath]"] 属性を付与する
+- **オプション**  
+  breakpoint: 指定のBP未満のビューポートでは発火しない
+
+▶ Sample DEMO: [https://qwel.design/tools/modal/]
 
 ---
 
 ## ライセンス | License
 
 MIT License
+
+このプロジェクトは、Webサイトやランディングページの基本となるUIユーティリティとして自由に使用できることを目的としています。  
+This project is intended to be freely used as a core UI utility for websites and landing pages.  
 
 詳しくは LICENSE ファイルをご覧ください。  
 See the LICENSE file for details.  
